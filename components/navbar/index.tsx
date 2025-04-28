@@ -1,11 +1,19 @@
 "use client";
 import { navLinks } from "@/constants";
-import { LOGO } from "@/public/images";
+import { CLOSE, LOGO } from "@/public/images";
+import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import { useNavBar } from "./useNavBar";
 
 function Navbar() {
-  const { navRef, navInfo, handleClickNavItem } = useNavBar();
+  const {
+    navRef,
+    navInfo,
+    isShowPopup,
+    handleClickNavItem,
+    handleOpenPopup,
+    handleClosePopup,
+  } = useNavBar();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-20 flex items-center justify-between px-4 md:px-6 lg:px-8 py-4 bg-transparent">
@@ -35,7 +43,7 @@ function Navbar() {
           </li>
         ))}
         <div
-          className="absolute top-0 h-0.5 bg-text transition-all duration-700 ease-in-out"
+          className="absolute top-0 h-0.5 bg-primary md:bg-text transition-all duration-700 ease-in-out"
           style={{
             width: navInfo.width,
             left: navInfo.positionX,
@@ -43,6 +51,56 @@ function Navbar() {
           }}
         />
       </ul>
+      <button className="md:hidden" onClick={handleOpenPopup}>
+        <div className="w-10 h-0.5 bg-text mb-2" />
+        <div className="w-5 h-0.5 bg-text" />
+      </button>
+      <AnimatePresence initial={false}>
+        {isShowPopup ? (
+          <motion.div
+            initial={{ opacity: 0, y: -32 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -32 }}
+            transition={{ duration: 0.5 }}
+            className="fixed inset-0 bg-white"
+          >
+            <button
+              className="flex justify-self-end rounded-full p-2 m-4 mb-8 bg-text"
+              onClick={handleClosePopup}
+            >
+              <Image src={CLOSE} alt="close-icon" width={32} height={32} />
+            </button>
+            <ul className="flex flex-col gap-4 p-4">
+              {[
+                {
+                  id: "hero-section",
+                  label: "Home",
+                },
+                ...navLinks,
+              ].map(link => (
+                <li
+                  key={link.id}
+                  ref={el => {
+                    navRef.current[link.id] = el;
+                  }}
+                  className="cursor-pointer text-primary text-2xl font-bold"
+                  onClick={() => handleClickNavItem(link.id)}
+                >
+                  {link.label}
+                </li>
+              ))}
+              <div
+                className="absolute top-0 h-0.5 bg-text transition-all duration-700 ease-in-out"
+                style={{
+                  width: navInfo.width,
+                  left: navInfo.positionX,
+                  top: navInfo.positionY,
+                }}
+              />
+            </ul>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
     </nav>
   );
 }

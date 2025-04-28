@@ -16,6 +16,7 @@ interface NavInfoProps {
 
 export const useNavBar = () => {
   const navRef = useRef<{ [key: string]: HTMLLIElement | null }>({});
+  const [isShowPopup, setIsShowPopup] = useState<boolean>(false);
   const [navInfo, setNavInfo] = useState<NavInfoProps>({
     positionX: 0,
     positionY: 0,
@@ -62,7 +63,6 @@ export const useNavBar = () => {
     const element = document.getElementById(id);
     element?.scrollIntoView({
       behavior: "smooth",
-      block: "end",
       inline: "nearest",
     });
   }, []);
@@ -71,9 +71,14 @@ export const useNavBar = () => {
     (id: string) => {
       handleSetNavInfo(id);
       handleScrollToId(id);
+      handleClosePopup();
     },
     [handleSetNavInfo, handleScrollToId]
   );
+
+  const handleOpenPopup = () => setIsShowPopup(true);
+
+  const handleClosePopup = () => setIsShowPopup(false);
 
   useLayoutEffect(() => {
     handleClickNavItem("hero-section");
@@ -112,6 +117,9 @@ export const useNavBar = () => {
   return {
     navRef,
     navInfo,
+    isShowPopup,
     handleClickNavItem,
+    handleOpenPopup,
+    handleClosePopup,
   };
 };
