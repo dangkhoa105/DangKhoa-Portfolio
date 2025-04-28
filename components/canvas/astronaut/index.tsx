@@ -1,5 +1,5 @@
 import { Preload, useGLTF } from "@react-three/drei";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { RefObject, useRef } from "react";
 import { Group, Vector3 } from "three";
 
@@ -9,21 +9,23 @@ function AstronautModel({
   wrapRef: RefObject<HTMLDivElement | null>;
 }) {
   const { scene } = useGLTF("/astronaut/scene.gltf");
+  const { size } = useThree();
   const astronautRef = useRef<Group>(null);
   const namePosition = new Vector3(0, 0, 0);
 
   useFrame(state => {
     const t = state.clock.getElapsedTime();
+    const orbitSizeWidth = size.width < 640 ? 5 : size.width < 1024 ? 8 : 12;
 
     if (astronautRef.current) {
-      const x = Math.sin(t * 0.2) * 12;
+      const x = Math.sin(t * 0.2) * orbitSizeWidth;
       const y = Math.cos(t * 0.15) * 5 + Math.sin(t * 0.3) * 0.5;
       const z = Math.cos(t * 0.2) * 12;
 
       if (wrapRef.current) {
-        if (x < -10) {
+        if (x < -orbitSizeWidth + 2) {
           wrapRef.current.style.zIndex = "10";
-        } else if (x > 10) {
+        } else if (x > orbitSizeWidth - 2) {
           wrapRef.current.style.zIndex = "-10";
         }
       }
