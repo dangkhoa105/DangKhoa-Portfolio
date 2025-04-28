@@ -8,9 +8,9 @@ interface Props {
 
 function ServiceCard({ title, listServices }: Props) {
   return (
-    <>
-      <h1 className="text-lg font-bold mb-6">{title}</h1>
-      <div className="grid grid-cols-3 gap-4">
+    <div>
+      <h1 className="text-xl font-bold mb-4">{title}</h1>
+      <div className="flex flex-wrap gap-4">
         {listServices.map(service => (
           <div
             key={service.label}
@@ -20,15 +20,15 @@ function ServiceCard({ title, listServices }: Props) {
               <Image
                 src={service.icon}
                 alt={service.label.toLowerCase()}
-                width={32}
-                height={32}
+                width={28}
+                height={28}
               />
             )}
             {service.label}
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }
 

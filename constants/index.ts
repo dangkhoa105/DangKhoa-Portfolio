@@ -1,3 +1,5 @@
+import { ANDROID_STUDIO, CHATGPT, FIGMA, GIT, XCODE } from "@/public/images";
+
 export type NavLink = {
   id: string;
   label?: string;
@@ -31,6 +33,7 @@ const techStacks: Service[] = [
   { label: "NextJs" },
   { label: "TypeScript" },
   { label: "HTML/CSS" },
+  { label: "Wordpress" },
   { label: "GraphQL" },
   { label: "Apollo Client" },
   { label: "TailwindCSS" },
@@ -40,11 +43,11 @@ const techStacks: Service[] = [
 ];
 
 const tools: Service[] = [
-  { label: "GIT", icon: "/images/git.svg" },
-  { label: "Figma", icon: "/images/figma.svg" },
-  { label: "ChatGPT", icon: "/images/chatgpt.svg" },
-  { label: "Android Studio", icon: "/images/android-studio.svg" },
-  { label: "XCode", icon: "/images/xcode.svg" },
+  { label: "GIT", icon: GIT },
+  { label: "Figma", icon: FIGMA },
+  { label: "ChatGPT", icon: CHATGPT },
+  { label: "Android Studio", icon: ANDROID_STUDIO },
+  { label: "XCode", icon: XCODE },
 ];
 
 export { navLinks, techStacks, tools };

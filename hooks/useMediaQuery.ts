@@ -5,7 +5,6 @@ export function useMediaQuery(query: string) {
 
   useEffect(() => {
     const media = window.matchMedia(query);
-    console.log("🚀 ~ useEffect ~ media:", media);
     const handleChange = () => setMatches(media.matches);
 
     handleChange();

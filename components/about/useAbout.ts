@@ -1,6 +1,9 @@
+"use client";
+
 export const useAbout = () => {
-  const age = new Date().getFullYear() - 1998;
-  const experienceTime = new Date().getFullYear() - 2021;
+  const currentYear = new Date().getFullYear();
+  const age = currentYear - 1998;
+  const experienceTime = currentYear - 2021;
 
   return {
     age,
