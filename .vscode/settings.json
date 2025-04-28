@@ -1,0 +1,23 @@
+{
+  "files.exclude": {
+    "amplify/.config": true,
+    "amplify/**/*-parameters.json": true,
+    "amplify/**/amplify.state": true,
+    "amplify/**/transform.conf.json": true,
+    // "node_modules": true
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.codeActionsOnSave": [
+    "source.organizeImports",
+    "source.fixAll",
+    "source.fixAll.eslint"
+  ],
+  "editor.formatOnSave": true,
+  "prettier.useEditorConfig": false,
+  "prettier.arrowParens": "avoid"
+}
