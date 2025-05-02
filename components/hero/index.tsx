@@ -5,7 +5,7 @@ import SkyCanvas from "../canvas/sky";
 
 function Hero() {
   return (
-    <div className="relative flex w-full h-screen">
+    <section id="hero-section" className="relative flex w-full h-screen">
       <div className="flex flex-1 justify-center items-center">
         <div className="flex flex-col gap-y-2 md:gap-y-4">
           <p className="text-xs md:text-xl ml-2 md:ml-4 lg:ml-8">
@@ -36,7 +36,7 @@ function Hero() {
           }}
         />
       </motion.div>
-    </div>
+    </section>
   );
 }
 

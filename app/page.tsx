@@ -1,18 +1,18 @@
 import About from "@/components/about";
+import Contact from "@/components/contact";
 import Hero from "@/components/hero";
 import Navbar from "@/components/navbar";
+import Work from "@/components/work";
 
 export default function App() {
   return (
     <div className="relative z-0 mx-auto">
       {/* Hero */}
       <Navbar />
-      <section id="hero-section">
-        <Hero />
-      </section>
-      <section id="about-section">
-        <About />
-      </section>
+      <Hero />
+      <About />
+      <Work />
+      <Contact />
     </div>
   );
 }

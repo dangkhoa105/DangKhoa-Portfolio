@@ -19,8 +19,8 @@ export const useLoadSectionAnimation = ({ section }: Props) => {
       const aboutSectionId = section;
 
       sections.forEach(section => {
-        const { top, bottom } = section.getBoundingClientRect();
-        if (top <= 100 && bottom >= 100) {
+        const { top, bottom, height } = section.getBoundingClientRect();
+        if (top <= height - 300 && bottom >= height - 300) {
           if (containerRef.current) {
             containerRef.current.style.opacity =
               section.id === aboutSectionId ? "1" : "0";

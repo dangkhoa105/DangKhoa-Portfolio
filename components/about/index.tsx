@@ -11,7 +11,8 @@ function About() {
   });
 
   return (
-    <div
+    <section
+      id="about-section"
       className="w-full min-h-screen p-4 md:p-6 lg:p-8 transition-opacity duration-500 opacity-0"
       ref={containerRef}
     >
@@ -59,7 +60,7 @@ function About() {
           <ServiceCard title="Tools" listServices={tools} />
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

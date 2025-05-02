@@ -50,4 +50,6 @@ const tools: Service[] = [
   { label: "XCode", icon: XCODE },
 ];
 
-export { navLinks, techStacks, tools };
+const projects = [];
+
+export { navLinks, projects, techStacks, tools };
