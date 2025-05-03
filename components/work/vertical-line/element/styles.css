@@ -1,0 +1,26 @@
+.element-left {
+  width: calc(50% - 16px);
+  /* Small screens */
+  @media (min-width: 768px) {
+    width: calc(50% - 24px);
+  }
+
+  /* Large screens */
+  @media (min-width: 1024px) {
+    width: calc(50% - 32px);
+  }
+}
+
+.element-right {
+  width: calc(50% - 20px);
+  /* Small screens */
+  @media (min-width: 768px) {
+    width: calc(50% - 28px);
+  }
+
+  /* Large screens */
+  @media (min-width: 1024px) {
+    width: calc(50% - 36px);
+  }
+}
+

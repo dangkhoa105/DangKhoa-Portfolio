@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "motion/react";
-import AstronautCanvas from "../canvas/astronaut";
 import SkyCanvas from "../canvas/sky";
+import SpaceShipCanvas from "../canvas/space-ship";
 
 function Hero() {
   return (
@@ -22,7 +22,7 @@ function Hero() {
       </div>
 
       <SkyCanvas />
-      <AstronautCanvas />
+      <SpaceShipCanvas />
 
       <motion.div className="flex absolute bottom-0 left-1/2 -translate-y-1/2 w-8 h-12 bg-transparent border-4 rounded-2xl items-center justify-center">
         <motion.div

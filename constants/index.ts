@@ -10,6 +10,15 @@ export type Service = {
   icon?: string;
 };
 
+export type Experience = {
+  title: string;
+  companyName: string;
+  description?: string[];
+  companyLink: string;
+  hiringLink?: string;
+  logo: string;
+};
+
 const navLinks: NavLink[] = [
   {
     id: "about-section",
@@ -40,6 +49,9 @@ const techStacks: Service[] = [
   { label: "Firebase" },
   { label: "BranchIO" },
   { label: "Sentry" },
+  { label: "ESLint" },
+  { label: "CI/CD" },
+  { label: "Fastlane" },
 ];
 
 const tools: Service[] = [
@@ -50,6 +62,33 @@ const tools: Service[] = [
   { label: "XCode", icon: XCODE },
 ];
 
+const experiences: Experience[] = [
+  {
+    title: "React Native Developer",
+    companyName: "FPT Information System",
+    description: [
+      "Developed and maintained cross-platform mobile apps using React Native.",
+      "Optimized performance, integrated third-party libraries.",
+      "Collaborated with teams to enhance UI/UX.",
+    ],
+    companyLink: "https://fpt-is.com/",
+    hiringLink: "https://careers.fptis.com/vi",
+    logo: "https://i.ibb.co/dJ59YFTs/download.png",
+  },
+  {
+    title: "React Native & Frontend Developer",
+    companyName: "HDWebsoft",
+    description: [
+      "Developed and maintained cross-platform mobile and web applications using React Native, TypeScript, React, HTML/CSS, WordPress, and Expo.",
+      "Optimized performance, integrated third-party libraries, and implemented authentication flows.",
+      "Collaborated with teams to enhance UI/UX.",
+      "Managed builds and deployments using Fastlane, CI/CD pipelines, GitHub Actions, and EAS Build.",
+    ],
+    companyLink: "https://www.hdwebsoft.com/",
+    hiringLink: "https://www.hdwebsoft.com/careers",
+    logo: "https://i.ibb.co/ns71NybG/1631351241377.jpg",
+  },
+];
 const projects = [];
 
-export { navLinks, projects, techStacks, tools };
+export { experiences, navLinks, projects, techStacks, tools };
