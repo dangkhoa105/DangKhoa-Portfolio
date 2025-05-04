@@ -65,7 +65,15 @@ const Element = forwardRef<HTMLDivElement, Props>(({ element, index }, ref) => {
               : "-right-7.5 md:-right-10 lg:-right-14"
           }`}
         >
-          <Image src={element.logo} alt="logo" layout="fill" />
+          <Image
+            src={element.logo}
+            alt="logo"
+            fill
+            style={{
+              width: "100%",
+              height: "100%",
+            }}
+          />
         </div>
       </div>
     </div>

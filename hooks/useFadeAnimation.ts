@@ -16,15 +16,12 @@ export const useLoadSectionAnimation = ({ section }: Props) => {
       if (!containerRef.current) return;
 
       const sections = document.querySelectorAll<HTMLElement>("section");
-      const aboutSectionId = section;
 
-      sections.forEach(section => {
-        const { top, bottom, height } = section.getBoundingClientRect();
-        if (top <= height - 300 && bottom >= height - 300) {
-          if (containerRef.current) {
-            containerRef.current.style.opacity =
-              section.id === aboutSectionId ? "1" : "0";
-          }
+      sections.forEach(sec => {
+        const { top, bottom, height } = sec.getBoundingClientRect();
+
+        if (top <= height / 4 && bottom >= height / 4) {
+          containerRef.current!.style.opacity = sec.id === section ? "1" : "0";
         }
       });
     };

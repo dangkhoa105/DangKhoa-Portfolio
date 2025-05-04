@@ -21,7 +21,7 @@ function Navbar() {
         className="flex items-center gap-x-4 font-bold text-xl mr-8 cursor-pointer"
         onClick={() => handleClickNavItem("hero-section")}
       >
-        <Image src={LOGO} alt="logo" height={40} objectFit="contain" />
+        <Image src={LOGO} alt="logo" height={40} />
         <p className="">
           Dang Khoa
           <span className="sm:block hidden text-sm">
