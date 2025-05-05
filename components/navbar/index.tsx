@@ -51,7 +51,7 @@ function Navbar() {
           }}
         />
       </ul>
-      <button className="md:hidden" onClick={handleOpenPopup}>
+      <button className="md:hidden cursor-pointer" onClick={handleOpenPopup}>
         <div className="w-10 h-0.5 bg-text mb-2" />
         <div className="w-5 h-0.5 bg-text" />
       </button>
@@ -64,12 +64,14 @@ function Navbar() {
             transition={{ duration: 0.5 }}
             className="fixed inset-0 bg-white"
           >
-            <button
-              className="flex justify-self-end rounded-full p-2 m-4 mb-8 bg-text"
-              onClick={handleClosePopup}
-            >
-              <Image src={CLOSE} alt="close-icon" width={32} height={32} />
-            </button>
+            <div className="w-full flex justify-end">
+              <button
+                className="m-4 mb-8 rounded-full p-2 bg-text cursor-pointer"
+                onClick={handleClosePopup}
+              >
+                <Image src={CLOSE} alt="close-icon" width={32} height={32} />
+              </button>
+            </div>
             <ul className="flex flex-col gap-4 p-4">
               {[
                 {
@@ -89,14 +91,16 @@ function Navbar() {
                   {link.label}
                 </li>
               ))}
-              <div
-                className="absolute top-0 h-0.5 bg-text transition-all duration-700 ease-in-out"
-                style={{
-                  width: navInfo.width,
-                  left: navInfo.positionX,
-                  top: navInfo.positionY,
-                }}
-              />
+              {!isShowPopup && (
+                <div
+                  className={`absolute top-0 h-0.5 bg-text transition-all duration-700 ease-in-out`}
+                  style={{
+                    width: navInfo.width,
+                    left: navInfo.positionX,
+                    top: navInfo.positionY,
+                  }}
+                />
+              )}
             </ul>
           </motion.div>
         ) : null}

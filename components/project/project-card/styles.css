@@ -1,0 +1,10 @@
+
+.thumbnail {
+  width: inherit;
+  aspect-ratio: 2 / 1;
+  background-image: var(--bg-url);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: var(--radius-lg)
+}
