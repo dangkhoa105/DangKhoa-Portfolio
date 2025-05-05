@@ -13,17 +13,17 @@ export const useLoadSectionAnimation = ({ section }: Props) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!containerRef.current) return;
+      const target = document.getElementById(section);
+      if (!target || !containerRef.current) return;
 
-      const sections = document.querySelectorAll<HTMLElement>("section");
+      const { top, bottom } = target.getBoundingClientRect();
 
-      sections.forEach(sec => {
-        const { top, bottom, height } = sec.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
 
-        if (top <= height / 4 && bottom >= height / 4) {
-          containerRef.current!.style.opacity = sec.id === section ? "1" : "0";
-        }
-      });
+      const isInView =
+        top <= windowHeight * 0.85 && bottom >= windowHeight * 0.25;
+
+      containerRef.current!.style.opacity = isInView ? "1" : "0";
     };
 
     const onScroll = () => requestAnimationFrame(handleScroll);

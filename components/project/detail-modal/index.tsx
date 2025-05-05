@@ -30,6 +30,7 @@ function DetailModal({ isShowPopup, project, handleClosePopup }: Props) {
                 <Image src={CLOSE} alt="close-icon" width={32} height={32} />
               </button>
             </div>
+            <div>{project.title}</div>
           </div>
         </motion.div>
       ) : null}

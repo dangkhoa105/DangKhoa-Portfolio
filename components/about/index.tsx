@@ -21,7 +21,7 @@ function About() {
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-20">
         <div className="flex flex-col gap-y-2 md:gap-y-4">
-          <p>Hi everybody, I&apos;m {age} years old</p>
+          <p>Hi, I&apos;m Khoa, I&apos;m {age} years old</p>
           <p>
             I graduated from{" "}
             <a
