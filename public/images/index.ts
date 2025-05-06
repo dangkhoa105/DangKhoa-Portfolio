@@ -4,6 +4,7 @@ import CHATGPT from "./chatgpt.svg";
 import CLOSE from "./close.svg";
 import FIGMA from "./figma.svg";
 import GIT from "./git.svg";
+import GROUP from "./group.svg";
 import IOS from "./ios.svg";
 import LOGO from "./logo.png";
 import WEB from "./web.svg";
@@ -16,6 +17,7 @@ export {
   CLOSE,
   FIGMA,
   GIT,
+  GROUP,
   IOS,
   LOGO,
   WEB,

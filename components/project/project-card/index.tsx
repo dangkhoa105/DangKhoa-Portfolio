@@ -3,6 +3,7 @@ import { Project } from "@/constants";
 import { ANDROID, IOS, WEB } from "@/public/images";
 import Image from "next/image";
 import DetailModal from "../detail-modal";
+import Domains from "../domains";
 import "./styles.css";
 import { useProjectCard } from "./useProjectCard";
 
@@ -68,18 +69,7 @@ function ProjectCard({ project }: Props) {
         <div className="flex flex-col flex-1 gap-4">
           <h1 className="flex flex-1 text-lg font-bold">{project.title}</h1>
           <p>{project.descriptions.slice(0, 50)}...</p>
-          <div className="flex flex-wrap gap-x-2">
-            {project.domain.map((dom, index) => (
-              <p
-                key={dom}
-                className={`text-sm ${
-                  index % 2 === 0 ? "text-accent-1" : "text-accent-2"
-                }`}
-              >
-                #{dom}
-              </p>
-            ))}
-          </div>
+          <Domains domains={project.domain} />
         </div>
       </div>
       <DetailModal

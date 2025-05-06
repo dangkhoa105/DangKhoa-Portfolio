@@ -59,7 +59,7 @@ const Element = forwardRef<HTMLDivElement, Props>(({ element, index }, ref) => {
           }`}
         />
         <div
-          className={`absolute top-2 md:top-1 lg:top-0 size-5 md:size-7 lg:size-10 rounded-full border z-50 overflow-hidden ${
+          className={`absolute top-2 md:top-1 lg:top-0 size-5 md:size-7 lg:size-10 rounded-full border z-20 overflow-hidden ${
             index % 2
               ? "-left-6.5 md:-left-9.5 lg:-left-13"
               : "-right-7.5 md:-right-10 lg:-right-14"

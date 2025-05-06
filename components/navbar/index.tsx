@@ -62,7 +62,7 @@ function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -32 }}
             transition={{ duration: 0.5 }}
-            className="fixed inset-0 bg-white"
+            className="fixed inset-0 bg-text"
           >
             <div className="w-full flex justify-end">
               <button
