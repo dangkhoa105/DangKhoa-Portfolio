@@ -29,27 +29,36 @@ function Navbar() {
           </span>
         </p>
       </div>
-      <ul className="hidden md:flex md:gap-x-10 lg:gap-x-20">
+      <ul className="hidden md:flex md:items-center md:gap-x-10 lg:gap-x-20">
         {navLinks.map(link => (
           <li
             key={link.id}
             ref={el => {
               navRef.current[link.id] = el;
             }}
-            className="cursor-pointer"
+            className="cursor-pointer hover:text-text/50 active:text-text/50"
             onClick={() => handleClickNavItem(link.id)}
           >
             {link.label}
           </li>
         ))}
-        <div
-          className="absolute top-0 h-0.5 bg-primary md:bg-text transition-all duration-700 ease-in-out"
-          style={{
-            width: navInfo.width,
-            left: navInfo.positionX,
-            top: navInfo.positionY,
-          }}
-        />
+        <a
+          href="https://drive.google.com/file/d/1iatzZce9OKEr-UOQYgIErqqcGbuVxs-9/view?usp=sharing"
+          className="md:flex px-4 py-2 bg-text hover:bg-text/50 active:bg-text/50 text-background rounded"
+          target="_blank"
+        >
+          Resume
+        </a>
+        {!isShowPopup && (
+          <div
+            className="absolute top-0 h-0.5 bg-primary md:bg-text transition-all duration-700 ease-in-out"
+            style={{
+              width: navInfo.width,
+              left: navInfo.positionX,
+              top: navInfo.positionY,
+            }}
+          />
+        )}
       </ul>
       <button className="md:hidden cursor-pointer" onClick={handleOpenPopup}>
         <div className="w-10 h-0.5 bg-text mb-2" />
@@ -72,7 +81,7 @@ function Navbar() {
                 <Image src={CLOSE} alt="close-icon" width={32} height={32} />
               </button>
             </div>
-            <ul className="flex flex-col gap-4 p-4">
+            <ul className="flex flex-1 flex-col gap-4 p-4">
               {[
                 {
                   id: "hero-section",
@@ -91,17 +100,14 @@ function Navbar() {
                   {link.label}
                 </li>
               ))}
-              {!isShowPopup && (
-                <div
-                  className={`absolute top-0 h-0.5 bg-text transition-all duration-700 ease-in-out`}
-                  style={{
-                    width: navInfo.width,
-                    left: navInfo.positionX,
-                    top: navInfo.positionY,
-                  }}
-                />
-              )}
             </ul>
+            <a
+              href="https://drive.google.com/file/d/1iatzZce9OKEr-UOQYgIErqqcGbuVxs-9/view?usp=sharing"
+              className="absolute bottom-10 right-10 px-4 py-2 bg-background hover:bg-background/50 active:bg-background/50 rounded"
+              target="_blank"
+            >
+              Resume
+            </a>
           </motion.div>
         ) : null}
       </AnimatePresence>
