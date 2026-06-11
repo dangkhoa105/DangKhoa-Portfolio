@@ -1,6 +1,7 @@
 "use client";
 import { PointMaterial, Points } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
+import { useCanvasActivity } from "@/hooks/useCanvasActivity";
 import { useRef, useState } from "react";
 import { Points as PointsImpl } from "three";
 
@@ -29,11 +30,19 @@ export function randomInSphere(count: number, radius: number = 1.0) {
   return positions;
 }
 
-function Sky() {
+function Sky({
+  isActive,
+  prefersReducedMotion,
+}: {
+  isActive: boolean;
+  prefersReducedMotion: boolean;
+}) {
   const ref = useRef<PointsImpl>(null);
-  const [sphere] = useState(() => randomInSphere(3000, 1.5));
+  const [sphere] = useState(() => randomInSphere(1800, 1.5));
 
   useFrame((_, delta) => {
+    if (!isActive || prefersReducedMotion) return;
+
     if (ref.current && ref.current.rotation) {
       ref.current.rotation.x -= delta / 10;
       ref.current.rotation.y -= delta / 15;
@@ -56,13 +65,26 @@ function Sky() {
 }
 
 function SkyCanvas() {
+  const { ref, isActive, prefersReducedMotion } = useCanvasActivity();
+
   return (
-    <div className="absolute inset-0 -z-10">
-      <Canvas camera={{ position: [0, 0, 1] }} color="white">
+    <div ref={ref} className="absolute inset-0 -z-10">
+      <Canvas
+        camera={{ position: [0, 0, 1] }}
+        dpr={[1, 1.25]}
+        frameloop={isActive && !prefersReducedMotion ? "always" : "demand"}
+        gl={{
+          alpha: true,
+          antialias: false,
+          powerPreference: "high-performance",
+        }}
+      >
         <ambientLight intensity={0.5} />
         <pointLight position={[5, 10, 5]} />
-        {/* Add your sky components here */}
-        <Sky />
+        <Sky
+          isActive={isActive}
+          prefersReducedMotion={prefersReducedMotion}
+        />
       </Canvas>
     </div>
   );

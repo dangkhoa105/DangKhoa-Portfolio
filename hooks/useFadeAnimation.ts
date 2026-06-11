@@ -1,41 +1,102 @@
-import { useEffect, useRef } from "react";
+"use client";
 
-interface Props {
-  section:
-    | "hero-section"
-    | "about-section"
-    | "work-section"
-    | "contact-section";
+import { type CSSProperties, useEffect, useRef, useState } from "react";
+
+type RevealDirection = "up" | "down" | "left" | "right" | "none";
+
+interface RevealOptions<T extends HTMLElement = HTMLDivElement> {
+  once?: boolean;
+  threshold?: number;
+  rootMargin?: string;
+  delay?: number;
+  direction?: RevealDirection;
+  distance?: number;
 }
 
-export const useLoadSectionAnimation = ({ section }: Props) => {
-  const containerRef = useRef<HTMLDivElement>(null);
+export const usePrefersReducedMotion = () => {
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const target = document.getElementById(section);
-      if (!target || !containerRef.current) return;
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-      const { top, bottom } = target.getBoundingClientRect();
-
-      const windowHeight = window.innerHeight;
-
-      const isInView =
-        top <= windowHeight * 0.85 && bottom >= windowHeight * 0.25;
-
-      containerRef.current!.style.opacity = isInView ? "1" : "0";
+    const handleChange = () => {
+      setPrefersReducedMotion(mediaQuery.matches);
     };
 
-    const onScroll = () => requestAnimationFrame(handleScroll);
-
-    document.addEventListener("scroll", onScroll, { passive: true });
+    handleChange();
+    mediaQuery.addEventListener("change", handleChange);
 
     return () => {
-      document.removeEventListener("scroll", onScroll);
+      mediaQuery.removeEventListener("change", handleChange);
     };
-  }, [section]);
+  }, []);
+
+  return prefersReducedMotion;
+};
+
+export const useRevealAnimation = <T extends HTMLElement = HTMLDivElement>({
+  once = true,
+  threshold = 0.18,
+  rootMargin = "0px 0px -8% 0px",
+  delay = 0,
+  direction = "up",
+  distance = 20,
+}: RevealOptions<T> = {}) => {
+  const ref = useRef<T>(null);
+  const [isInView, setIsInView] = useState(false);
+  const prefersReducedMotion = usePrefersReducedMotion();
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    if (prefersReducedMotion) {
+      setIsInView(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const visible = entry.isIntersecting;
+
+        setIsInView(visible);
+
+        if (visible && once) {
+          observer.unobserve(entry.target);
+        }
+      },
+      {
+        threshold,
+        rootMargin,
+      }
+    );
+
+    observer.observe(element);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [once, prefersReducedMotion, rootMargin, threshold]);
+
+  const axisDistance =
+    prefersReducedMotion || direction === "none" ? 0 : distance;
+  const hiddenTransform = {
+    up: `translate3d(0, ${axisDistance}px, 0)`,
+    down: `translate3d(0, -${axisDistance}px, 0)`,
+    left: `translate3d(${axisDistance}px, 0, 0)`,
+    right: `translate3d(-${axisDistance}px, 0, 0)`,
+    none: "translate3d(0, 0, 0)",
+  }[direction];
 
   return {
-    containerRef,
+    ref,
+    isInView,
+    revealStyle: {
+      "--reveal-delay": `${delay}ms`,
+      "--reveal-transform": hiddenTransform,
+    } as CSSProperties,
+    revealClassName: isInView ? "reveal reveal-visible" : "reveal",
   };
 };
+
+export const useLoadSectionAnimation = useRevealAnimation;

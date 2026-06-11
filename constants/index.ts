@@ -1,4 +1,4 @@
-import { ANDROID_STUDIO, CHATGPT, FIGMA, GIT, XCODE } from "@/public/images";
+import { FIGMA, GIT } from "@/public/images";
 
 export type NavLink = {
   id: string;
@@ -19,6 +19,7 @@ export type Reference = {
 export type Experience = {
   title: string;
   companyName: string;
+  period: string;
   description?: string[];
   companyLink: string;
   hiringLink?: string;
@@ -51,42 +52,80 @@ const navLinks: NavLink[] = [
   },
 ];
 
-const techStacks: Service[] = [
-  { label: "React Native" },
-  { label: "Expo" },
-  { label: "ReactJs" },
-  { label: "Flutter" },
-  { label: "NextJs" },
+const programmingLanguages: Service[] = [
+  { label: "JavaScript" },
   { label: "TypeScript" },
-  { label: "HTML/CSS" },
-  { label: "Wordpress" },
-  { label: "GraphQL" },
+  { label: "HTML" },
+  { label: "CSS" },
+  { label: "Swift" },
+  { label: "Dart" },
+];
+
+const frameworksAndLibraries: Service[] = [
+  { label: "React Native" },
+  { label: "React" },
+  { label: "Next.js" },
+  { label: "Flutter" },
+  { label: "Expo" },
+  { label: "Redux" },
+  { label: "Redux Saga" },
+  { label: "React Query" },
+  { label: "Context API" },
   { label: "Apollo Client" },
-  { label: "TailwindCSS" },
+  { label: "React Hook Form" },
+  { label: "Tailwind CSS" },
+];
+
+const mobileDevelopment: Service[] = [
+  { label: "Native Modules" },
+  { label: "Multi-environment Configuration" },
+  { label: "Push Notifications" },
   { label: "Firebase" },
-  { label: "BranchIO" },
   { label: "Sentry" },
+  { label: "Branch.io" },
+  { label: "In-App Purchase" },
+  { label: "Payment Integration" },
+  { label: "Animations" },
+  { label: "API Integration" },
+  { label: "Authentication" },
+];
+
+const backendAndDatabase: Service[] = [
+  { label: "NestJS" },
+  { label: "Supabase" },
+  { label: "Firebase" },
+];
+
+const devOpsAndTools: Service[] = [
+  { label: "Git", icon: GIT },
+  { label: "GitHub" },
   { label: "ESLint" },
   { label: "CI/CD" },
   { label: "Fastlane" },
+  { label: "Figma", icon: FIGMA },
 ];
 
-const tools: Service[] = [
-  { label: "GIT", icon: GIT },
-  { label: "Figma", icon: FIGMA },
-  { label: "ChatGPT", icon: CHATGPT },
-  { label: "Android Studio", icon: ANDROID_STUDIO },
-  { label: "XCode", icon: XCODE },
+const testing: Service[] = [
+  { label: "Unit Testing" },
+  { label: "Integration Testing" },
+  { label: "React Native Testing Library" },
+  { label: "Detox" },
+];
+
+const others: Service[] = [
+  { label: "Agile/Scrum Methodology" },
+  { label: "App Store Deployment" },
+  { label: "Google Play Deployment" },
 ];
 
 const experiences: Experience[] = [
   {
     title: "React Native Developer",
     companyName: "FPT Information System",
+    period: "Apr 2019 - Mar 2021",
     description: [
-      "Developed and maintained cross-platform mobile apps using React Native.",
-      "Optimized performance, integrated third-party libraries.",
-      "Collaborated with teams to enhance UI/UX.",
+      "Developed and maintained cross-platform mobile applications using React Native.",
+      "Integrated third-party libraries, improved app performance, and contributed to UI/UX enhancements in Agile development teams.",
     ],
     companyLink: "https://fpt-is.com/",
     hiringLink: "https://careers.fptis.com/vi",
@@ -95,58 +134,49 @@ const experiences: Experience[] = [
   {
     title: "React Native & Frontend Developer",
     companyName: "HDWebsoft",
+    period: "Apr 2021 - Mar 2024",
     description: [
-      "Developed and maintained cross-platform mobile and web applications using React Native, TypeScript, React, HTML/CSS, WordPress, and Expo.",
-      "Optimized performance, integrated third-party libraries, and implemented authentication flows.",
-      "Collaborated with teams to enhance UI/UX.",
-      "Managed builds and deployments using Fastlane, CI/CD pipelines, GitHub Actions, and EAS Build.",
+      "Delivered mobile and web features using React Native, React, WordPress, TypeScript, and Expo across multiple client projects.",
+      "Collaborated closely with designers, backend engineers, and QA teams to improve usability, stability, and delivery quality.",
     ],
     companyLink: "https://www.hdwebsoft.com/",
     hiringLink: "https://www.hdwebsoft.com/careers",
     logo: "https://i.ibb.co/ns71NybG/1631351241377.jpg",
   },
+  {
+    title: "React Native & Frontend Developer",
+    companyName: "Haibazo",
+    period: "Apr 2024 - Present",
+    description: [
+      "Develop and maintain cross-platform mobile applications using React Native, TypeScript, Expo, authentication flows, deep linking, and third-party service integrations.",
+      "Build responsive web applications with React, Next.js, Tailwind CSS, and TypeScript, ensuring consistency between web and mobile UI systems.",
+      "Manage release workflows and CI/CD pipelines using GitHub Actions, EAS Build, and app store deployment practices.",
+    ],
+    companyLink: "https://haibazo.com/",
+    logo: "https://i.ibb.co/W4Hf48yR/haibazo.webp",
+  },
 ];
 
 const projects: Project[] = [
   {
-    title: "CRM",
-    descriptions:
-      "FPT's CRM application is a customer relationship management solution designed to help businesses manage sales, customer care, and internal workflows more efficiently. Key features include customer data management, sales pipeline tracking, ticket-based support, real-time dashboards, and integration with third-party systems (ERP, email, call center). It supports both web and mobile platforms, making it ideal for businesses aiming to enhance customer engagement and streamline operations.",
-    member: 3,
-    responsibilities: [
-      "Integrate third-party libraries.",
-      "Create reusable base components.",
-      "Implement charts.",
-    ],
-    technologies: ["ReactNative", "Typescript", "Redux", "Redux Saga"],
-    references: {
-      web: "https://apps.fis.vn/product/5ffe74780af08870336be577",
-    },
-    thumbnail: "https://i.ibb.co/8n0BtY7f/crm.png",
-    domain: ["Sales", "CRM"],
-  },
-  {
     title: "Template Mobile App",
     descriptions:
-      "A reusable mobile ReactNative app template to accelerate development for new projects.",
+      "A reusable React Native mobile app template designed to accelerate development for new projects.",
     member: 3,
     responsibilities: [
-      "Integrate third-party libraries.",
-      "Integrate flow start up when open app.",
-      "Create reusable base components.",
-      "Setup Fastlane and CICD.",
+      "Integrated third-party libraries and configured the app startup flow.",
+      "Built reusable base components to improve development consistency and scalability.",
+      "Set up Fastlane and CI/CD workflows for mobile app build and deployment.",
     ],
     technologies: [
-      "ReactNative",
-      "Typescript",
-      "Native Module",
+      "React Native",
       "Social Authentication",
-      "Sentry",
-      "BranchIO",
+      "Branch.io",
       "Redux",
       "Redux Saga",
       "Firebase",
       "Fastlane",
+      "CI/CD",
     ],
     references: {
       web: "https://github.com/dangkhoa105/react-native-template",
@@ -157,217 +187,108 @@ const projects: Project[] = [
   {
     title: "TCCentral",
     descriptions:
-      "A multi-platform web app for trading and exchanging collectible cards.",
+      "A multi-platform app for trading and exchanging collectible cards.",
     member: 2,
     responsibilities: [
-      "Integrate third-party libraries.",
-      "Create reusable base components.",
+      "Integrated third-party libraries.",
+      "Created reusable base components.",
       "Develop an image editing tool.",
-      "Responsive for multi-platform web app.",
-      "Create a responsive homepage built with WordPress and custom HTML/CSS to showcase product features and drive user engagement.",
     ],
     technologies: [
-      "ReactNative",
-      "Typescript",
       "Expo",
       "Expo Router",
       "Gluestack",
       "GraphQL client",
-      "Wordpress",
-      "HTML/CSS",
       "Responsive Web/App",
       "Animation",
-      "EAS Build",
     ],
     references: {
-      web: "https://heystack.tech/",
+      web: "https://app.dev.tccentral.com/",
     },
     thumbnail: "https://i.ibb.co/4Z9g51db/heystack.png",
-    domain: ["Social", "E-commerce"],
-  },
-  {
-    title: "Gemini Sport",
-    descriptions:
-      "A multi-platform web app for displaying and analyzing football player statistics and performance data. Built with ReactJS, React Native, and Tailwind CSS, it delivers a responsive, data-driven experience for coaches, scouts, and analysts.",
-    member: 2,
-    responsibilities: [
-      "Integrate third-party libraries.",
-      "Create reusable base components.",
-      "Create charts.",
-      "Responsive for multi-platform web app.",
-    ],
-    technologies: [
-      "ReactNative",
-      "Typescript",
-      "Expo",
-      "Expo Router",
-      "Gluestack V2",
-      "Tailwindcss",
-      "GraphQL client",
-      "Wordpress",
-      "HTML/CSS",
-      "Responsive Web/App",
-      "Animation",
-      "EAS Build",
-    ],
-    references: {
-      web: "https://geminisports.ai/",
-    },
-    thumbnail: "https://i.ibb.co/7J2dYcsP/gemini-sport.png",
-    domain: ["SportsTechnology", "DataAnalytics"],
-  },
-  {
-    title: "TheoDocs",
-    descriptions:
-      "A responsive homepage built with HTML/CSS to showcase product features and drive user engagement.",
-    member: 2,
-    responsibilities: ["Building responsive sections."],
-    technologies: ["HTML/CSS", "Responsive Web/App"],
-    references: {
-      web: "https://www.theodocs.com/",
-    },
-    thumbnail: "https://i.ibb.co/TByrWhcQ/theodocs.png",
-    domain: ["ProductMarketing"],
+    domain: ["Collectibles", "Trading", "Marketplace"],
   },
   {
     title: "Trivia Bar",
     descriptions:
-      "The Trivia Bar transforms bar trivia into an exciting online experience. Play for free or win over $1,000,000 in paid contests with categories like TV shows and history.",
+      "An online trivia platform that allows users to play free games or join paid contests across categories such as TV shows, history, and entertainment.",
     member: 3,
     responsibilities: [
-      "Integrate third-party libraries, APIs, and services as needed to enhance app functionality.",
-      "Implement a subscription feature that allows users to purchase plans to access rooms corresponding to their subscription tier.",
+      "Integrated third-party libraries, APIs, and real-time services.",
+      "Implemented subscription features that allow users to purchase plans and access rooms based on their subscription tier.",
+      "Integrated payment, in-app purchase, analytics, monitoring, and app update services.",
     ],
     technologies: [
-      "ReactNative",
-      "Typescript",
-      "Native Module",
+      "React Native",
       "Social Authentication",
-      "Stripe SDK",
-      "SocketIO",
-      "Google Maps",
-      "Sentry",
-      "BranchIO",
+      "Branch.io",
       "Redux",
       "Redux Saga",
-      "Firebase",
-      "Fastlane",
+      "Stripe SDK",
+      "In-App Purchase",
+      "CodePush/App Center",
+      "NetInfo",
+      "Sentry",
+      "Real-time",
     ],
     references: {
+      ios: "https://apps.apple.com/us/app/the-trivia-bar/id1574468002",
       android:
         "https://play.google.com/store/apps/details?id=com.triviabar.app",
-      ios: "https://apps.apple.com/us/app/the-trivia-bar/id1574468002",
     },
     thumbnail: "https://i.ibb.co/ZzHDJn1b/triviabar.png",
-    domain: ["OnlineGaming", "Quiz", "Trivia"],
-  },
-  {
-    title: "Booking",
-    descriptions:
-      "This booking app features role-based access for customers and staff. Customers can view services, book appointments, and track their booking history, while staff can manage schedules, confirm or update bookings, and monitor client activity. The app offers a seamless and secure experience across devices.",
-    member: 3,
-    responsibilities: [
-      "Integrate third-party libraries.",
-      "Integrate dynamic layout.",
-      "Integrate dynamic theme.",
-      "Setup Fastlane and CI/CD to build and create project.",
-    ],
-    technologies: [
-      "ReactNative",
-      "Typescript",
-      "Native Module",
-      "Social Authentication",
-      "In-app purchase",
-      "SocketIO",
-      "Sentry",
-      "BranchIO",
-      "Redux",
-      "Redux Saga",
-      "Code Push",
-      "Firebase",
-      "Fastlane",
-    ],
-    thumbnail: "https://cdn.worldvectorlogo.com/logos/react-native-1.svg",
-    domain: ["Booking", "Scheduling", "BusinessSolutions"],
+    domain: ["Online Gaming", "Quiz", "Trivia"],
   },
   {
     title: "Actor Axis",
     descriptions:
-      "Actors Axis is a social networking app designed for entertainment industry enthusiasts, whether professionals or newcomers. The app features a user-curated map system, webinars, news, job listings, and a stage for showcasing posts to the entire user base.",
+      "A social networking application for entertainment industry professionals, newcomers, and enthusiasts. The app includes a user-curated map system, webinars, news, job listings, and a public stage for showcasing posts.",
     member: 3,
     responsibilities: [
-      "Integrate third-party libraries, APIs, and services as needed to enhance app functionality.",
-      "Implement short video feature.",
-      "Implement an In-app purchase for buying star.",
+      "Integrated third-party libraries, APIs, and services to enhance app functionality.",
+      "Implemented short video features and social interaction flows.",
+      "Integrated in-app purchase for buying stars and supported map-based features.",
     ],
     technologies: [
-      "ReactNative",
-      "Typescript",
+      "React Native",
       "Social Authentication",
-      "In-app purchase",
-      "SocketIO",
+      "Firebase",
       "Google Maps",
-      "Sentry",
-      "BranchIO",
+      "Branch.io",
       "Redux",
       "Redux Saga",
-      "Firebase",
-      "Fastlane",
+      "In-App Purchase",
+      "Sentry",
+      "Real-time",
     ],
     references: {
       web: "https://www.actorsaxis.com/",
+      ios: "https://apps.apple.com/us/app/actors-axis/id6448968060",
       android:
         "https://play.google.com/store/apps/details?id=com.actorsaxis.app",
-      ios: "https://apps.apple.com/us/app/actors-axis/id6448968060",
     },
     thumbnail: "https://i.ibb.co/nsFDSF5k/actoraxis.jpg",
-    domain: ["SocialNetworking", "Entertainment"],
-  },
-  {
-    title: "PureIV",
-    descriptions: "A marketplace app for buying and selling cocktails.",
-    member: 3,
-    responsibilities: [
-      "Integrate third-party libraries, APIs, and services as needed to enhance app functionality.",
-    ],
-    technologies: [
-      "ReactNative",
-      "Typescript",
-      "Stripe SDK",
-      "SocketIO",
-      "Google Maps",
-      "Sentry",
-      "BranchIO",
-      "Redux",
-      "Redux Saga",
-      "Firebase",
-      "Maps for delivery route tracking Realtime",
-    ],
-    references: {
-      web: "https://pivhw.com/",
-    },
-    thumbnail: "https://i.ibb.co/jkNm7y11/pureiv.jpg",
-    domain: ["E-commerce", "Marketplace"],
+    domain: ["Social Networking", "Entertainment"],
   },
   {
     title: "IMP",
     descriptions:
-      "A call management app for handling and recording calls. Connected phones to manufacturer-specific boxes via Bluetooth (BLE), supported call handling, phone number processing, and call recording.",
+      "A call management application for handling and recording calls. The app connects mobile devices to manufacturer-specific boxes via Bluetooth Low Energy, supporting call handling, phone number processing, contact syncing, and call recording.",
     member: 2,
     responsibilities: [
-      "Integrate third-party libraries, APIs, and services as needed to enhance app functionality.",
-      "Implement connect BLE.",
-      "Handle sync contacts from device.",
-      "Implement chart.",
+      "Integrated third-party libraries, APIs, and services to enhance app functionality.",
+      "Implemented Bluetooth Low Energy connection with external devices.",
+      "Handled contact synchronization from the device and developed chart-based data visualization.",
     ],
     technologies: [
-      "ReactNative",
-      "Typescript",
-      "Silent Notification",
-      "Sentry",
-      "BranchIO",
+      "React Native",
       "Redux",
       "Redux Saga",
+      "Redux Persist",
+      "Bluetooth Low Energy",
+      "Sentry",
+      "Animation",
+      "Victory Charts",
     ],
     references: {
       android:
@@ -375,8 +296,64 @@ const projects: Project[] = [
       ios: "https://apps.apple.com/us/app/imp-imp-box-controller/id1509443801",
     },
     thumbnail: "https://i.ibb.co/Xkpvwv2k/imp.png",
-    domain: ["Telecommunications", "CallManagement", "MobileTechnology"],
+    domain: ["Telecommunications", "Call Management", "Mobile Technology"],
+  },
+  {
+    title: "Company Website",
+    descriptions:
+      "A corporate website designed to introduce the company's services, expertise, projects, and brand identity.",
+    member: 1,
+    responsibilities: [
+      "Built responsive web pages using Next.js and TypeScript.",
+      "Implemented interactive UI animations and smooth transitions using GSAP and Motion.",
+      "Optimized layout, visual consistency, and user experience across desktop and mobile devices.",
+    ],
+    technologies: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "GSAP",
+      "Motion",
+      "Responsive Web Design",
+    ],
+    references: {
+      web: "https://haibazo.com/",
+    },
+    thumbnail: "https://cdn.worldvectorlogo.com/logos/react-native-1.svg",
+    domain: ["Corporate Website", "Frontend", "Brand Identity"],
+  },
+  {
+    title: "RFS",
+    descriptions:
+      "A course management web application that allows users to create, upload, manage, view, and register for courses.",
+    member: 1,
+    responsibilities: [
+      "Developed responsive web interfaces using React.js.",
+      "Implemented course creation, upload, management, viewing, and registration flows.",
+      "Integrated API data fetching and state management using TanStack Query and Zustand.",
+      "Improved UI consistency and user experience across course management features.",
+    ],
+    technologies: [
+      "React.js",
+      "TanStack Query",
+      "Zustand",
+      "JavaScript/TypeScript",
+      "Responsive Web Design",
+    ],
+    thumbnail: "https://cdn.worldvectorlogo.com/logos/react-native-1.svg",
+    domain: ["Course Management", "Education", "Frontend"],
   },
 ];
 
-export { experiences, navLinks, projects, techStacks, tools };
+export {
+  backendAndDatabase,
+  devOpsAndTools,
+  experiences,
+  frameworksAndLibraries,
+  mobileDevelopment,
+  navLinks,
+  others,
+  programmingLanguages,
+  projects,
+  testing,
+};

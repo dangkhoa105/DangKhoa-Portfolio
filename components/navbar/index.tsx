@@ -102,7 +102,7 @@ function Navbar() {
               ))}
             </ul>
             <a
-              href="https://drive.google.com/file/d/1iatzZce9OKEr-UOQYgIErqqcGbuVxs-9/view?usp=sharing"
+              href="https://drive.google.com/file/d/1vbn1NW6SkdpS0CteOMQZi1wNqdW15AyN/view?usp=sharing"
               className="absolute bottom-10 right-10 px-4 py-2 bg-background hover:bg-background/50 active:bg-background/50 rounded"
               target="_blank"
             >

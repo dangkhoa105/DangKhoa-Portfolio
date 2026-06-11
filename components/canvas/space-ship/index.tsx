@@ -1,11 +1,16 @@
 import { Preload, useGLTF } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { RefObject, useRef } from "react";
+import { useCanvasActivity } from "@/hooks/useCanvasActivity";
+import { RefObject, useCallback, useRef } from "react";
 import { Group, Vector3 } from "three";
 
 function SpaceShipModel({
+  isActive,
+  prefersReducedMotion,
   wrapRef,
 }: {
+  isActive: boolean;
+  prefersReducedMotion: boolean;
   wrapRef: RefObject<HTMLDivElement | null>;
 }) {
   const { scene } = useGLTF("/spaceship/scene.gltf");
@@ -14,6 +19,8 @@ function SpaceShipModel({
   const namePosition = new Vector3(0, 0, 0);
 
   useFrame(state => {
+    if (!isActive || prefersReducedMotion) return;
+
     const t = state.clock.getElapsedTime();
     const orbitSizeWidth = size.width < 640 ? 5 : 8;
 
@@ -47,27 +54,40 @@ function Lights() {
         position={[10, 20, 10]}
         angle={0.3}
         penumbra={1}
-        intensity={2}
-        castShadow
-        shadow-mapSize-width={1024}
-        shadow-mapSize-height={1024}
+        intensity={1.6}
       />
     </>
   );
 }
 
 function SpaceShipCanvas() {
-  const wrapRef = useRef<HTMLDivElement>(null);
+  const { ref: activityRef, isActive, prefersReducedMotion } =
+    useCanvasActivity();
+  const wrapRef = useRef<HTMLDivElement | null>(null);
+
+  const setWrapRef = useCallback((element: HTMLDivElement | null) => {
+    wrapRef.current = element;
+    activityRef.current = element;
+  }, [activityRef]);
+
   return (
-    <div ref={wrapRef} className="absolute inset-0 -z-10">
+    <div ref={setWrapRef} className="absolute inset-0 -z-10">
       <Canvas
-        shadows
-        dpr={[1, 2]}
+        dpr={[1, 1.5]}
+        frameloop={isActive && !prefersReducedMotion ? "always" : "demand"}
         camera={{ position: [0, 0, 25], fov: 45 }}
-        gl={{ preserveDrawingBuffer: true }}
+        gl={{
+          alpha: true,
+          antialias: true,
+          powerPreference: "high-performance",
+        }}
       >
         <Lights />
-        <SpaceShipModel wrapRef={wrapRef} />
+        <SpaceShipModel
+          isActive={isActive}
+          prefersReducedMotion={prefersReducedMotion}
+          wrapRef={wrapRef}
+        />
         <meshStandardMaterial />
         <Preload all />
       </Canvas>

@@ -1,26 +1,38 @@
 "use client";
-import { techStacks, tools } from "@/constants";
+import {
+  backendAndDatabase,
+  devOpsAndTools,
+  frameworksAndLibraries,
+  mobileDevelopment,
+  others,
+  programmingLanguages,
+  testing,
+} from "@/constants";
 import { useLoadSectionAnimation } from "@/hooks/useFadeAnimation";
+import Reveal from "../reveal";
 import ServiceCard from "./service-card";
 import { useAbout } from "./useAbout";
 
 function About() {
   const { age, experienceTime } = useAbout();
-  const { containerRef } = useLoadSectionAnimation({
-    section: "about-section",
+  const { ref, revealClassName, revealStyle } = useLoadSectionAnimation({
+    threshold: 0.12,
   });
 
   return (
     <section
       id="about-section"
-      className="w-full min-h-screen p-4 md:p-6 lg:p-8 transition-opacity duration-500 opacity-0"
-      ref={containerRef}
+      className={`w-full min-h-screen p-4 md:p-6 lg:p-8 ${revealClassName}`}
+      ref={ref}
+      style={revealStyle}
     >
-      <h1 className="text-5xl md:text-6xl lg:text-8xl font-bold mb-10">
-        Overview.
-      </h1>
+      <Reveal direction="right" distance={18}>
+        <h1 className="text-5xl md:text-6xl lg:text-8xl font-bold mb-10">
+          Overview.
+        </h1>
+      </Reveal>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-20">
-        <div className="flex flex-col gap-y-2 md:gap-y-4">
+        <Reveal className="flex flex-col gap-y-2 md:gap-y-4" delay={90}>
           <p>Hi, I&apos;m Khoa, I&apos;m {age} years old</p>
           <p>
             I graduated from{" "}
@@ -54,10 +66,36 @@ function About() {
             I&apos;m always excited to learn, grow, and contribute to innovative
             projects that make a difference. Feel free to explore my work below!
           </p>
-        </div>
+        </Reveal>
         <div className="flex flex-col gap-y-8">
-          <ServiceCard title="Tech Stacks" listServices={techStacks} />
-          <ServiceCard title="Tools" listServices={tools} />
+          {[
+            {
+              title: "Programming Languages",
+              listServices: programmingLanguages,
+            },
+            {
+              title: "Frameworks & Libraries",
+              listServices: frameworksAndLibraries,
+            },
+            {
+              title: "Mobile Development",
+              listServices: mobileDevelopment,
+            },
+            {
+              title: "Backend & Database",
+              listServices: backendAndDatabase,
+            },
+            { title: "DevOps & Tools", listServices: devOpsAndTools },
+            { title: "Testing", listServices: testing },
+            { title: "Others", listServices: others },
+          ].map((item, index) => (
+            <Reveal key={item.title} delay={120 + index * 70} distance={16}>
+              <ServiceCard
+                title={item.title}
+                listServices={item.listServices}
+              />
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>
